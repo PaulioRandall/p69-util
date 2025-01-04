@@ -1,0 +1,32 @@
+{
+	"author": "Paul Williams",
+	"name": "@paulio/p69-util",
+	"description": "Utility structures and functions designed for P69",
+	"type": "module",
+	"license": "MIT",
+	"version": "1.0.0-rc-1",
+	"engines": {
+		"node": ">=18"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/PaulioRandall/p69-util.git"
+	},
+	"keywords": [
+		"css",
+		"utility"
+	],
+	"exports": {
+		".": "./lib/index.js"
+	},
+	"scripts": {
+		"fmt": "prettier --log-level warn --write .",
+		"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --silent --runInBand",
+		"debug": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand",
+		"commit": "npm run fmt && npm run test && cat ./ready-to-ship.txt"
+	},
+	"devDependencies": {
+		"jest": "29.7.0",
+		"prettier": "3.4.2"
+	}
+}
