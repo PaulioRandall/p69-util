@@ -1,7 +1,7 @@
 {
 	"author": "Paul Williams",
 	"name": "@paulio/p69-util",
-	"description": "Utility structures and functions designed for P69",
+	"description": "Utility tools designed for P69",
 	"type": "module",
 	"license": "MIT",
 	"version": "1.0.0-rc-1",
@@ -14,7 +14,7 @@
 	},
 	"keywords": [
 		"css",
-		"utility"
+		"util"
 	],
 	"exports": {
 		".": "./lib/index.js"
