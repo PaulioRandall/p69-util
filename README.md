@@ -13,15 +13,20 @@ Utility functions for use with **P69** token files.
 
 ## Functions
 
-- [colorMap(map, userOptions)](#colormapmap-useroptions)
-- [colorMappers(map, userOptions)](#colormappersmap-useroptions)
-- [sizeMap(map, userOptions)](#sizemapmap-useroptions)
-- [sizeMappers(map, userOptions)](#sizemappersmap-useroptions)
-- [absSizeMap(map, userOptions)](#abssizemapmap-useroptions)
-- [absSizeMappers(map, userOptions)](#abssizemappersmap-useroptions)
-- [generateVariables(map, userOptions)](#generatevariablesmap-useroptions)
+- [Colors](#colors)
+  - [colorMap(map, userOptions)](#colormapmap-useroptions)
+  - [colorMappers(map, userOptions)](#colormappersmap-useroptions)
+- [Sizes](#sizes)
+  - [sizeMap(map, userOptions)](#sizemapmap-useroptions)
+  - [sizeMappers(map, userOptions)](#sizemappersmap-useroptions)
+  - [absSizeMap(map, userOptions)](#abssizemapmap-useroptions)
+  - [absSizeMappers(map, userOptions)](#abssizemappersmap-useroptions)
+- [Variables](#variables)
+  - [generateVariables(map, userOptions)](#generatevariablesmap-useroptions)
 
-## `colorMap(map, userOptions)`
+## Colors
+
+### `colorMap(map, userOptions)`
 
 ```js
 import P69Util from 'p69-util'
@@ -64,7 +69,8 @@ console.log(colors) /*
 } */
 ```
 
-```css /* .p96 */
+```css
+/* .p69 */
 selector {
 	color: $colors.crimson.hex; /* #dc143c */
 	color: $colors.crimson.rgb; /* rgb(220, 20, 60) */
@@ -72,9 +78,9 @@ selector {
 }
 ```
 
-[^Back to contents](#contents)
+[^Back to contents](#functions)
 
-## `colorMappers(map, userOptions)`
+### `colorMappers(map, userOptions)`
 
 ```js
 import P69Util from 'p69-util'
@@ -100,7 +106,8 @@ colors.crimson('rgb') // "rgb(220, 20, 60)"
 colors.crimson('raw') // [220, 20, 60]
 ```
 
-```css /* .p96 */
+```css
+/* .p69 */
 selector {
 	color: $colors.crimson(); /* #dc143c */
 	color: $colors.crimson(hex); /* #dc143c */
@@ -109,9 +116,11 @@ selector {
 }
 ```
 
-[^Back to contents](#contents)
+[^Back to contents](#functions)
 
-## `sizeMap(map, userOptions)`
+## Sizes
+
+### `sizeMap(map, userOptions)`
 
 ```js
 import P69Util from 'p69-util'
@@ -159,7 +168,8 @@ console.log(font.size) /*
 } */
 ```
 
-```css /* .p96 */
+```css
+/* .p69 */
 selector {
 	font-size: $font.size.md.px; /* 16px */
 	font-size: $font.size.md.em; /* 1em */
@@ -167,9 +177,9 @@ selector {
 }
 ```
 
-[^Back to contents](#contents)
+[^Back to contents](#functions)
 
-## `sizeMappers(map, userOptions)`
+### `sizeMappers(map, userOptions)`
 
 ```js
 import P69Util from 'p69-util'
@@ -200,7 +210,8 @@ font.size.md('em') // "1em"
 font.size.md('rem') // "1rem"
 ```
 
-```css /* .p96 */
+```css
+/* .p69 */
 selector {
 	font-size: $font.size.md(); /* 16px */
 	font-size: $font.size.md(px); /* 16px */
@@ -209,9 +220,9 @@ selector {
 }
 ```
 
-[^Back to contents](#contents)
+[^Back to contents](#functions)
 
-## `absSizeMap(map, userOptions)`
+### `absSizeMap(map, userOptions)`
 
 ```js
 import P69Util from 'p69-util'
@@ -268,7 +279,8 @@ console.log(font.size) /*
 } */
 ```
 
-```css /* .p96 */
+```css
+/* .p69 */
 selector {
 	font-size: $font.size.md.px; /* 16px */
 	font-size: $font.size.md.pt; /* 12pt */
@@ -279,15 +291,15 @@ selector {
 }
 ```
 
-[^Back to contents](#contents)
+[^Back to contents](#functions)
 
-## `absSizeMappers(map, userOptions)`
+### `absSizeMappers(map, userOptions)`
 
 ```js
 import P69Util from 'p69-util'
 
 const font = {
-	size: P69Util.absSizeMap(
+	size: P69Util.absSizeMappers(
 		{
 			sm: 12,
 			md: 16,
@@ -315,7 +327,8 @@ font.size.md('cm') // "0.42cm",
 font.size.md('mm') // "4.2mm",
 ```
 
-```css /* .p96 */
+```css
+/* .p69 */
 selector {
 	font-size: $font.size.md(); /* 16px */
 	font-size: $font.size.md(px); /* 16px */
@@ -327,9 +340,11 @@ selector {
 }
 ```
 
-[^Back to contents](#contents)
+[^Back to contents](#functions)
 
-## `generateVariables(map, userOptions)`
+## Variables
+
+### `generateVariables(map, userOptions)`
 
 ```js
 import P69Util from 'p69-util'
@@ -374,4 +389,4 @@ console.log(variables) /*
 */
 ```
 
-[^Back to contents](#contents)
+[^Back to contents](#functions)
