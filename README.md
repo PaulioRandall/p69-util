@@ -4,7 +4,7 @@
 
 # P69 Util
 
-Provides utility functions for use with **P69** token files.
+Utility functions for use with **P69** token files.
 
 - **P69**: https://github.com/PaulioRandall/p69
 - **P69 Files**: https://github.com/PaulioRandall/p69-files
@@ -64,6 +64,14 @@ console.log(colors) /*
 } */
 ```
 
+```css /* .p96 */
+selector {
+	color: $colors.crimson.hex; /* #dc143c */
+	color: $colors.crimson.rgb; /* rgb(220, 20, 60) */
+	color: rgba($colors.crimson.raw / 0.5); /* 220, 20, 60 */
+}
+```
+
 [^Back to contents](#contents)
 
 ## `colorMappers(map, userOptions)`
@@ -71,10 +79,11 @@ console.log(colors) /*
 ```js
 import P69Util from 'p69-util'
 
-const mappers = P69Util.colorMappers(
+const colors = P69Util.colorMappers(
 	{
 		crimson: '#DC143C',
 		royalblue: '#4169E1',
+		seagreen: '#2E8B57',
 	},
 	{
 		// Formats to create values for.
@@ -85,10 +94,19 @@ const mappers = P69Util.colorMappers(
 	}
 )
 
-mappers.crimson() // "#dc143c"
-mappers.crimson('hex') // "#dc143c"
-mappers.crimson('rgb') // "rgb(220, 20, 60)"
-mappers.crimson('raw') // [220, 20, 60]
+colors.crimson() // "#dc143c"
+colors.crimson('hex') // "#dc143c"
+colors.crimson('rgb') // "rgb(220, 20, 60)"
+colors.crimson('raw') // [220, 20, 60]
+```
+
+```css /* .p96 */
+selector {
+	color: $colors.crimson(); /* #dc143c */
+	color: $colors.crimson(hex); /* #dc143c */
+	color: $colors.crimson(rgb); /* rgb(220, 20, 60) */
+	color: rgba($colors.crimson(raw) / 0.5); /* 220, 20, 60 */
+}
 ```
 
 [^Back to contents](#contents)
@@ -98,25 +116,27 @@ mappers.crimson('raw') // [220, 20, 60]
 ```js
 import P69Util from 'p69-util'
 
-const sizes = P69Util.sizeMap(
-	{
-		sm: 12,
-		md: 16,
-		lg: 20,
-	},
-	{
-		// Number of pixels relative to base font size (rem).
-		pxPerRem: 16.0,
+const font = {
+	size: P69Util.sizeMap(
+		{
+			sm: 12,
+			md: 16,
+			lg: 20,
+		},
+		{
+			// Number of pixels relative to base font size (rem).
+			pxPerRem: 16.0,
 
-		// Formats to create values for.
-		formats: ['', 'px', 'em', 'rem'],
+			// Formats to create values for.
+			formats: ['', 'px', 'em', 'rem'],
 
-		// The format to use for the empty format.
-		defaultFormat: 'px',
-	}
-)
+			// The format to use for the empty format.
+			defaultFormat: 'px',
+		}
+	),
+}
 
-console.log(sizes) /*
+console.log(font.size) /*
 {
 	sm: {
 		'': '12px',
@@ -139,6 +159,14 @@ console.log(sizes) /*
 } */
 ```
 
+```css /* .p96 */
+selector {
+	font-size: $font.size.md.px; /* 16px */
+	font-size: $font.size.md.em; /* 1em */
+	font-size: $font.size.md.rem; /* 1rem */
+}
+```
+
 [^Back to contents](#contents)
 
 ## `sizeMappers(map, userOptions)`
@@ -146,28 +174,39 @@ console.log(sizes) /*
 ```js
 import P69Util from 'p69-util'
 
-const mappers = P69Util.sizeMappers(
-	{
-		sm: 12,
-		md: 16,
-		lg: 20,
-	},
-	{
-		// Number of pixels relative to base font size (rem).
-		pxPerRem: 16.0,
+const font = {
+	size: P69Util.sizeMappers(
+		{
+			sm: 12,
+			md: 16,
+			lg: 20,
+		},
+		{
+			// Number of pixels relative to base font size (rem).
+			pxPerRem: 16.0,
 
-		// Formats to create values for.
-		formats: ['', 'px', 'em', 'rem'],
+			// Formats to create values for.
+			formats: ['', 'px', 'em', 'rem'],
 
-		// The format to use for the empty format.
-		defaultFormat: 'px',
-	}
-)
+			// The format to use for the empty format.
+			defaultFormat: 'px',
+		}
+	),
+}
 
-mappers.md() // "16px"
-mappers.md('px') // "16px"
-mappers.md('em') // "1em"
-mappers.md('rem') // "1rem"
+font.size.md() // "16px"
+font.size.md('px') // "16px"
+font.size.md('em') // "1em"
+font.size.md('rem') // "1rem"
+```
+
+```css /* .p96 */
+selector {
+	font-size: $font.size.md(); /* 16px */
+	font-size: $font.size.md(px); /* 16px */
+	font-size: $font.size.md(em); /* 1em */
+	font-size: $font.size.md(rem); /* 1rem */
+}
 ```
 
 [^Back to contents](#contents)
@@ -177,25 +216,27 @@ mappers.md('rem') // "1rem"
 ```js
 import P69Util from 'p69-util'
 
-const sizes = P69Util.absSizeMap(
-	{
-		sm: 12,
-		md: 16,
-		lg: 20,
-	},
-	{
-		// Number of pixels in an inch.
-		pxPerInc: 96.0,
+const font = {
+	size: P69Util.absSizeMap(
+		{
+			sm: 12,
+			md: 16,
+			lg: 20,
+		},
+		{
+			// Number of pixels in an inch.
+			pxPerInc: 96.0,
 
-		// Formats to create values for.
-		formats: ['', 'px', 'pt', 'pc', 'in', 'cm', 'mm'],
+			// Formats to create values for.
+			formats: ['', 'px', 'pt', 'pc', 'in', 'cm', 'mm'],
 
-		// The format to use for the empty format.
-		defaultFormat: 'px',
-	}
-)
+			// The format to use for the empty format.
+			defaultFormat: 'px',
+		}
+	),
+}
 
-console.log(sizes) /*
+console.log(font.size) /*
 {
 	sm: {
 		'': '12px',
@@ -227,6 +268,17 @@ console.log(sizes) /*
 } */
 ```
 
+```css /* .p96 */
+selector {
+	font-size: $font.size.md.px; /* 16px */
+	font-size: $font.size.md.pt; /* 12pt */
+	font-size: $font.size.md.pc; /* 1pc */
+	font-size: $font.size.md.in; /* 0.167in */
+	font-size: $font.size.md.cm; /* 0.42cm */
+	font-size: $font.size.md.mm; /* 4.2mm */
+}
+```
+
 [^Back to contents](#contents)
 
 ## `absSizeMappers(map, userOptions)`
@@ -234,31 +286,45 @@ console.log(sizes) /*
 ```js
 import P69Util from 'p69-util'
 
-const mappers = P69Util.absSizeMappers(
-	{
-		sm: 12,
-		md: 16,
-		lg: 20,
-	},
-	{
-		// Number of pixels in an inch.
-		pxPerInc: 96.0,
+const font = {
+	size: P69Util.absSizeMap(
+		{
+			sm: 12,
+			md: 16,
+			lg: 20,
+		},
+		{
+			// Number of pixels in an inch.
+			pxPerInc: 96.0,
 
-		// Formats to create values for.
-		formats: ['', 'px', 'pt', 'pc', 'in', 'cm', 'mm'],
+			// Formats to create values for.
+			formats: ['', 'px', 'pt', 'pc', 'in', 'cm', 'mm'],
 
-		// The format to use for the empty format.
-		defaultFormat: 'px',
-	}
-)
+			// The format to use for the empty format.
+			defaultFormat: 'px',
+		}
+	),
+}
 
-mappers.md() // "16px"
-mappers.md('px') // "16px"
-mappers.md('pt') // "12pt",
-mappers.md('pc') // "1pc",
-mappers.md('in') // "0.167in",
-mappers.md('cm') // "0.42cm",
-mappers.md('mm') // "4.2mm",
+font.size.md() // "16px"
+font.size.md('px') // "16px"
+font.size.md('pt') // "12pt",
+font.size.md('pc') // "1pc",
+font.size.md('in') // "0.167in",
+font.size.md('cm') // "0.42cm",
+font.size.md('mm') // "4.2mm",
+```
+
+```css /* .p96 */
+selector {
+	font-size: $font.size.md(); /* 16px */
+	font-size: $font.size.md(px); /* 16px */
+	font-size: $font.size.md(pt); /* 12pt */
+	font-size: $font.size.md(pc); /* 1pc */
+	font-size: $font.size.md(in); /* 0.167in */
+	font-size: $font.size.md(cm); /* 0.42cm */
+	font-size: $font.size.md(mm); /* 4.2mm */
+}
 ```
 
 [^Back to contents](#contents)
