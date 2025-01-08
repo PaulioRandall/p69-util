@@ -28,16 +28,22 @@ Utility functions for use with **P69** token files.
 
 ### `colorMap(map, userOptions)`
 
+Accepts a map of colors and returns a map of each color to various color formats.
+
 ```js
 import P69Util from 'p69-util'
 
 const colors = P69Util.colorMap(
 	{
+		// Map or object (no nesting!)
+		// Color string must be hex or CSS rgb value, e.g. #112233 or rgb(1 2 3)
+		// name: 'color'
 		crimson: '#DC143C',
 		royalblue: '#4169E1',
 		seagreen: '#2E8B57',
 	},
 	{
+		// Options
 		// Formats to create values for.
 		formats: ['', 'hex', 'rgb', 'raw'],
 
@@ -82,16 +88,22 @@ selector {
 
 ### `colorMappers(map, userOptions)`
 
+Accepts a map of colors and returns a map of functions that returns its color in various formats.
+
 ```js
 import P69Util from 'p69-util'
 
 const colors = P69Util.colorMappers(
 	{
+		// Map or object (no nesting!)
+		// Color string must be hex or CSS rgb value, e.g. #112233 or rgb(1 2 3)
+		// name: 'color'
 		crimson: '#DC143C',
 		royalblue: '#4169E1',
 		seagreen: '#2E8B57',
 	},
 	{
+		// Options
 		// Formats to create values for.
 		formats: ['', 'hex', 'rgb', 'raw'],
 
@@ -122,30 +134,34 @@ selector {
 
 ### `sizeMap(map, userOptions)`
 
+Accepts a map of sizes (font sizes, widths, heights, etc) and returns a map of each size in various formats.
+
 ```js
 import P69Util from 'p69-util'
 
-const font = {
-	size: P69Util.sizeMap(
-		{
-			sm: 12,
-			md: 16,
-			lg: 20,
-		},
-		{
-			// Number of pixels relative to base font size (rem).
-			pxPerRem: 16.0,
+const fontSizes = P69Util.sizeMap(
+	{
+		// Map or object (no nesting!)
+		// Pixel values must be numbers.
+		// name: pixels (px)
+		sm: 12,
+		md: 16,
+		lg: 20,
+	},
+	{
+		// Options
+		// Number of pixels relative to base font size (rem).
+		pxPerRem: 16.0,
 
-			// Formats to create values for.
-			formats: ['', 'px', 'em', 'rem'],
+		// Formats to create values for.
+		formats: ['', 'px', 'em', 'rem'],
 
-			// The format to use for the empty format.
-			defaultFormat: 'px',
-		}
-	),
-}
+		// The format to use for the empty format.
+		defaultFormat: 'px',
+	}
+)
 
-console.log(font.size) /*
+console.log(fontSizes) /*
 {
 	sm: {
 		'': '12px',
@@ -171,9 +187,9 @@ console.log(font.size) /*
 ```css
 /* .p69 */
 selector {
-	font-size: $font.size.md.px; /* 16px */
-	font-size: $font.size.md.em; /* 1em */
-	font-size: $font.size.md.rem; /* 1rem */
+	font-size: $fontsizes.md.px; /* 16px */
+	font-size: $fontsizes.md.em; /* 1em */
+	font-size: $fontsizes.md.rem; /* 1rem */
 }
 ```
 
@@ -181,42 +197,46 @@ selector {
 
 ### `sizeMappers(map, userOptions)`
 
+Accepts a map of sizes (font sizes, widths, heights, etc) and returns a map of functions that returns its size in various formats.
+
 ```js
 import P69Util from 'p69-util'
 
-const font = {
-	size: P69Util.sizeMappers(
-		{
-			sm: 12,
-			md: 16,
-			lg: 20,
-		},
-		{
-			// Number of pixels relative to base font size (rem).
-			pxPerRem: 16.0,
+const fontSizes = P69Util.sizeMappers(
+	{
+		// Map or object (no nesting!)
+		// Pixel values must be numbers.
+		// name: pixels (px)
+		sm: 12,
+		md: 16,
+		lg: 20,
+	},
+	{
+		// Options
+		// Number of pixels relative to base font size (rem).
+		pxPerRem: 16.0,
 
-			// Formats to create values for.
-			formats: ['', 'px', 'em', 'rem'],
+		// Formats to create values for.
+		formats: ['', 'px', 'em', 'rem'],
 
-			// The format to use for the empty format.
-			defaultFormat: 'px',
-		}
-	),
-}
+		// The format to use for the empty format.
+		defaultFormat: 'px',
+	}
+)
 
-font.size.md() // "16px"
-font.size.md('px') // "16px"
-font.size.md('em') // "1em"
-font.size.md('rem') // "1rem"
+fontSizes.md() // "16px"
+fontSizes.md('px') // "16px"
+fontSizes.md('em') // "1em"
+fontSizes.md('rem') // "1rem"
 ```
 
 ```css
 /* .p69 */
 selector {
-	font-size: $font.size.md(); /* 16px */
-	font-size: $font.size.md(px); /* 16px */
-	font-size: $font.size.md(em); /* 1em */
-	font-size: $font.size.md(rem); /* 1rem */
+	font-size: $fontSizes.md(); /* 16px */
+	font-size: $fontSizes.md(px); /* 16px */
+	font-size: $fontSizes.md(em); /* 1em */
+	font-size: $fontSizes.md(rem); /* 1rem */
 }
 ```
 
@@ -224,30 +244,34 @@ selector {
 
 ### `absSizeMap(map, userOptions)`
 
+Same as `sizeMap` except it returns absolute units.
+
 ```js
 import P69Util from 'p69-util'
 
-const font = {
-	size: P69Util.absSizeMap(
-		{
-			sm: 12,
-			md: 16,
-			lg: 20,
-		},
-		{
-			// Number of pixels in an inch.
-			pxPerInc: 96.0,
+const fontSizes = P69Util.absSizeMap(
+	{
+		// Map or object (no nesting!)
+		// Pixel values must be numbers.
+		// name: pixels (px)
+		sm: 12,
+		md: 16,
+		lg: 20,
+	},
+	{
+		// Options
+		// Number of pixels in an inch.
+		pxPerInc: 96.0,
 
-			// Formats to create values for.
-			formats: ['', 'px', 'pt', 'pc', 'in', 'cm', 'mm'],
+		// Formats to create values for.
+		formats: ['', 'px', 'pt', 'pc', 'in', 'cm', 'mm'],
 
-			// The format to use for the empty format.
-			defaultFormat: 'px',
-		}
-	),
-}
+		// The format to use for the empty format.
+		defaultFormat: 'px',
+	}
+)
 
-console.log(font.size) /*
+console.log(fontSizes) /*
 {
 	sm: {
 		'': '12px',
@@ -282,12 +306,12 @@ console.log(font.size) /*
 ```css
 /* .p69 */
 selector {
-	font-size: $font.size.md.px; /* 16px */
-	font-size: $font.size.md.pt; /* 12pt */
-	font-size: $font.size.md.pc; /* 1pc */
-	font-size: $font.size.md.in; /* 0.167in */
-	font-size: $font.size.md.cm; /* 0.42cm */
-	font-size: $font.size.md.mm; /* 4.2mm */
+	font-size: $fontSizes.md.px; /* 16px */
+	font-size: $fontSizes.md.pt; /* 12pt */
+	font-size: $fontSizes.md.pc; /* 1pc */
+	font-size: $fontSizes.md.in; /* 0.167in */
+	font-size: $fontSizes.md.cm; /* 0.42cm */
+	font-size: $fontSizes.md.mm; /* 4.2mm */
 }
 ```
 
@@ -295,48 +319,52 @@ selector {
 
 ### `absSizeMappers(map, userOptions)`
 
+Same as `sizeMappers` except it returns absolute units.
+
 ```js
 import P69Util from 'p69-util'
 
-const font = {
-	size: P69Util.absSizeMappers(
-		{
-			sm: 12,
-			md: 16,
-			lg: 20,
-		},
-		{
-			// Number of pixels in an inch.
-			pxPerInc: 96.0,
+const fontSizes = P69Util.absSizeMappers(
+	{
+		// Map or object (no nesting!)
+		// Pixel values must be numbers.
+		// name: pixels (px)
+		sm: 12,
+		md: 16,
+		lg: 20,
+	},
+	{
+		// Options
+		// Number of pixels in an inch.
+		pxPerInc: 96.0,
 
-			// Formats to create values for.
-			formats: ['', 'px', 'pt', 'pc', 'in', 'cm', 'mm'],
+		// Formats to create values for.
+		formats: ['', 'px', 'pt', 'pc', 'in', 'cm', 'mm'],
 
-			// The format to use for the empty format.
-			defaultFormat: 'px',
-		}
-	),
-}
+		// The format to use for the empty format.
+		defaultFormat: 'px',
+	}
+)
 
-font.size.md() // "16px"
-font.size.md('px') // "16px"
-font.size.md('pt') // "12pt",
-font.size.md('pc') // "1pc",
-font.size.md('in') // "0.167in",
-font.size.md('cm') // "0.42cm",
-font.size.md('mm') // "4.2mm",
+fontSizes.md() // "16px"
+fontSizes.md('px') // "16px"
+fontSizes.md('pt') // "12pt",
+fontSizes.md('pc') // "1pc",
+fontSizes.md('in') // "0.167in",
+fontSizes.md('cm') // "0.42cm",
+fontSizes.md('mm') // "4.2mm",
 ```
 
 ```css
 /* .p69 */
 selector {
-	font-size: $font.size.md(); /* 16px */
-	font-size: $font.size.md(px); /* 16px */
-	font-size: $font.size.md(pt); /* 12pt */
-	font-size: $font.size.md(pc); /* 1pc */
-	font-size: $font.size.md(in); /* 0.167in */
-	font-size: $font.size.md(cm); /* 0.42cm */
-	font-size: $font.size.md(mm); /* 4.2mm */
+	font-size: $fontSizes.md(); /* 16px */
+	font-size: $fontSizes.md(px); /* 16px */
+	font-size: $fontSizes.md(pt); /* 12pt */
+	font-size: $fontSizes.md(pc); /* 1pc */
+	font-size: $fontSizes.md(in); /* 0.167in */
+	font-size: $fontSizes.md(cm); /* 0.42cm */
+	font-size: $fontSizes.md(mm); /* 4.2mm */
 }
 ```
 
@@ -346,11 +374,15 @@ selector {
 
 ### `generateVariables(map, userOptions)`
 
+Accepts an user defined nested object of tokens and returns a liine separated string of CSS variables.
+
 ```js
 import P69Util from 'p69-util'
 
 const variables = P69Util.generateVariables(
 	{
+		// Nested map or object
+		// Structure determines CSS variable names
 		color: {
 			primary: '#0000FF',
 			secondary: '#FF0000',
@@ -368,6 +400,7 @@ const variables = P69Util.generateVariables(
 		},
 	},
 	{
+		// Options
 		// Prefix to apply to all variables (lines), except the first.
 		// This is usually one or more spaces or tabs to create
 		// readable formatting.
