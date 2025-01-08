@@ -13,13 +13,60 @@ Provides utility structures and functions for use with **P69** token files.
 
 ## Contents
 
-- [Functions](#functions)
-- [Structures](#structures)
+- [Colors](#colors)
+- [Sizes](#sizes)
+- [Variables](#variables)
 
-## Functions
+## `Colors`
+
+```js
+Colors.map(colorMap, userOptions)
+Colors.mapper(colorMap, userOptions)
+```
+
+### `Colors.map(colorMap, userOptions)`
+
+```js
+const colors = Colors.map({
+	crimson: '#DC143C',
+	royalblue: '#4169E1',
+}, {
+	// Formats to create values for.
+	formats: ['', 'hex', 'rgb', 'raw', 'rawa'],
+	
+	// The format to use for the empty format. 
+	defaultFormat: 'hex',
+})
+
+// console.log(colors)
+{
+	crimson: {
+		'': '#DC143C',
+		hex: '#DC143C',
+		rgb: 'rgb(220, 20, 60)', // rgba(220, 20, 60, 1)
+		raw: [220, 20, 60],
+		raw: [220, 20, 60, 1],
+	},
+	royalblue: {
+		'': '#4169E1',
+		hex: '#4169E1',
+		rgb: 'rgb(65, 105, 225)', // rgba(65, 105, 225, 1) 
+		raw: [65, 105, 225],
+		raw: [65, 105, 225, 1],
+	},
+}
+```
 
 [^Back to contents](#contents)
 
-## Structures
+## `Sizes`
+
+
+
+[^Back to contents](#contents)
+
+## `Variables`
+
+
 
 [^Back to contents](#contents)
