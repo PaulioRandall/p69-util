@@ -13,8 +13,8 @@ Provides utility structures and functions for use with **P69** token files.
 
 ## Contents
 
-- [colorMap(map, userOptions)](#colorMap_map--userOptions_)
-- [colorMappers](#colorMappers)
+- [colorMap(map, userOptions)](#colormapmap-useroptions)
+- [colorMappers(map, userOptions)](#colormappersmap-useroptions)
 - [sizeMap](#sizeMap)
 - [sizeMappers](#sizeMappers)
 - [absSizeMap](#absSizeMap)
@@ -24,12 +24,14 @@ Provides utility structures and functions for use with **P69** token files.
 ## `colorMap(map, userOptions)`
 
 ```js
-const colors = Colors.map({
+import P69Util from 'p69-util'
+
+const colors = P69Util.colorMap({
 	crimson: '#DC143C',
 	royalblue: '#4169E1',
 }, {
 	// Formats to create values for.
-	formats: ['', 'hex', 'rgb', 'raw', 'rawa'],
+	formats: ['', 'hex', 'rgb', 'raw'],
 
 	// The format to use for the empty format.
 	defaultFormat: 'hex',
@@ -56,10 +58,29 @@ const colors = Colors.map({
 
 [^Back to contents](#contents)
 
-## `Sizes`
+## `colorMappers(map, userOptions)`
 
-[^Back to contents](#contents)
+```js
+import P69Util from 'p69-util'
 
-## `Variables`
+const mappers = P69Util.colorMappers(
+	{
+		crimson: '#DC143C',
+		royalblue: '#4169E1',
+	},
+	{
+		// Formats to create values for.
+		formats: ['', 'hex', 'rgb', 'raw'],
+
+		// The format to use for the empty format.
+		defaultFormat: 'hex',
+	}
+)
+
+mappers.crimson() // "#dc143c"
+mappers.crimson('hex') // "#dc143c"
+mappers.crimson('rgb') // "rgb(220, 20, 60)"
+mappers.crimson('raw') // [220, 20, 60]
+```
 
 [^Back to contents](#contents)
