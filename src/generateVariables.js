@@ -1,4 +1,4 @@
-const generate = (varMap, userOptions = {}) => {
+export default function (varMap, userOptions = {}) {
 	const options = prepOptions(userOptions)
 
 	const flatVarMap = {}
@@ -45,7 +45,11 @@ const appendFlatValue = (flatVarMap, flatName, value) => {
 }
 
 const isObject = (v) => {
-	return typeof v === 'object' && !Array.isArray(v) && v !== null
+	return (
+		typeof v === 'object' && //
+		!Array.isArray(v) && //
+		v !== null
+	)
 }
 
 const compileVariables = (flatVarMap) => {
@@ -67,7 +71,3 @@ const prefixVariables = (variables, prefix, prefixFirst) => {
 		variables[i] = prefix + variables[i].trim()
 	}
 }
-
-export default Object.freeze({
-	generate,
-})

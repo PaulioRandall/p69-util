@@ -1,6 +1,6 @@
-const map = (sizeMap, userOptions = {}) => {
+const generateSizeMap = (sizeMap, userOptions = {}) => {
 	const options = prepMapOptions(userOptions)
-	const result = mappers(sizeMap, userOptions)
+	const result = generateSizeMapper(sizeMap, userOptions)
 
 	for (const name in result) {
 		const sizer = result[name]
@@ -19,9 +19,8 @@ const map = (sizeMap, userOptions = {}) => {
 	return result
 }
 
-const mappers = (sizeMap, userOptions = {}) => {
+const generateSizeMapper = (sizeMap, userOptions = {}) => {
 	const options = prepMapOptions(userOptions)
-
 	const results = {}
 
 	for (const name in sizeMap) {
@@ -55,8 +54,8 @@ const generateMapper = (px, options) => {
 	}
 }
 
-const absMap = (sizeMap, userOptions = {}) => {
-	const result = absMappers(sizeMap, userOptions)
+const generateAbsSizeMap = (sizeMap, userOptions = {}) => {
+	const result = generateAbsSizeMapper(sizeMap, userOptions)
 
 	for (const name in result) {
 		const sizer = result[name]
@@ -73,10 +72,9 @@ const absMap = (sizeMap, userOptions = {}) => {
 	return result
 }
 
-const absMappers = (sizeMap, userOptions = {}) => {
+const generateAbsSizeMapper = (sizeMap, userOptions = {}) => {
 	const options = prepAbsMapOptions(userOptions)
 	const denominators = calcConversionDenominators(options.pxPerInch)
-
 	const results = {}
 
 	for (const name in sizeMap) {
@@ -140,9 +138,9 @@ const round = (n, dp = 3) => {
 	return result / mod
 }
 
-export default Object.freeze({
-	map,
-	mappers,
-	absMap,
-	absMappers,
-})
+export default {
+	generateSizeMap,
+	generateSizeMapper,
+	generateAbsSizeMap,
+	generateAbsSizeMapper,
+}

@@ -33,8 +33,8 @@ const colors = Colors.map({
 }, {
 	// Formats to create values for.
 	formats: ['', 'hex', 'rgb', 'raw', 'rawa'],
-	
-	// The format to use for the empty format. 
+
+	// The format to use for the empty format.
 	defaultFormat: 'hex',
 })
 
@@ -50,7 +50,7 @@ const colors = Colors.map({
 	royalblue: {
 		'': '#4169E1',
 		hex: '#4169E1',
-		rgb: 'rgb(65, 105, 225)', // rgba(65, 105, 225, 1) 
+		rgb: 'rgb(65, 105, 225)', // rgba(65, 105, 225, 1)
 		raw: [65, 105, 225],
 		raw: [65, 105, 225, 1],
 	},
@@ -61,12 +61,8 @@ const colors = Colors.map({
 
 ## `Sizes`
 
-
-
 [^Back to contents](#contents)
 
 ## `Variables`
-
-
 
 [^Back to contents](#contents)
