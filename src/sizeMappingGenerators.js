@@ -23,14 +23,14 @@ const generateSizeMapper = (sizeMap, userOptions = {}) => {
 	const options = prepMapOptions(userOptions)
 	const results = {}
 
-	for (const name in map) {
-		results[name] = generateMapper(map[name], options)
+	for (const name in sizeMap) {
+		results[name] = generateMapper(sizeMap[name], options)
 	}
 
 	return results
 }
 
-const prepOptions = (userOptions) => {
+const prepMapOptions = (userOptions) => {
 	return {
 		pxPerRem: 16.0, // E.g. base font size
 		formats: ['', 'px', 'em', 'rem'],
@@ -59,16 +59,14 @@ const generateAbsSizeMap = (sizeMap, userOptions = {}) => {
 
 	for (const name in result) {
 		const sizer = result[name]
-
-		result[name] = options.formats.reduce((acc, fmt) => {
-			if (fmt === '') {
-				acc[''] = sizer(options.defaultFormat)
-			} else {
-				acc[fmt] = sizer(fmt)
-			}
-
-			return acc
-		}, {})
+		result[name] = {
+			px: sizer('px'),
+			pt: sizer('pt'),
+			pc: sizer('pc'),
+			in: sizer('in'),
+			cm: sizer('cm'),
+			mm: sizer('mm'),
+		}
 	}
 
 	return result
@@ -79,18 +77,17 @@ const generateAbsSizeMapper = (sizeMap, userOptions = {}) => {
 	const denominators = calcConversionDenominators(options.pxPerInch)
 	const results = {}
 
-	for (const name in map) {
-		results[name] = generateAbsMapper(map[name], denominators, options)
+	for (const name in sizeMap) {
+		results[name] = generateAbsMapper(sizeMap[name], denominators, options)
 	}
 
 	return results
 }
 
-const prepAbsOptions = (userOptions) => {
+const prepAbsMapOptions = (userOptions) => {
 	return {
 		pxPerInch: 96.0, // Some may refer to it as DPI
-		formats: ['', 'px', 'pt', 'pc', 'in', 'cm', 'mm'],
-		defaultFormat: 'px',
+		defaultFormat: 'rem',
 		...userOptions,
 	}
 }

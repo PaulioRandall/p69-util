@@ -1,9 +1,9 @@
-import sizeMapping from './sizeMapping.js'
+import sizeMappingGenerators from './sizeMappingGenerators.js'
 
-describe('sizeMapping.js', () => {
+describe('sizeMappingGenerators.js', () => {
 	describe('map()', () => {
 		test('passes given valid size map', () => {
-			const act = sizeMapping.generateSizeMap({
+			const act = sizeMappingGenerators.generateSizeMap({
 				sm: 12,
 				md: 16,
 				lg: 20,
@@ -32,7 +32,7 @@ describe('sizeMapping.js', () => {
 		})
 
 		test('passes given specific default format', () => {
-			const act = sizeMapping.generateSizeMap(
+			const act = sizeMappingGenerators.generateSizeMap(
 				{
 					md: 16,
 				},
@@ -52,7 +52,7 @@ describe('sizeMapping.js', () => {
 		})
 
 		test('passes given specific formats', () => {
-			const act = sizeMapping.generateSizeMap(
+			const act = sizeMappingGenerators.generateSizeMap(
 				{
 					md: 16,
 				},
@@ -70,7 +70,7 @@ describe('sizeMapping.js', () => {
 		})
 
 		test('passes given specific formats and default format', () => {
-			const act = sizeMapping.generateSizeMap(
+			const act = sizeMappingGenerators.generateSizeMap(
 				{
 					md: 16,
 				},

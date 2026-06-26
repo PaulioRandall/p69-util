@@ -1,7 +1,7 @@
 export generateVariables from './generateVariables.js'
-export sizeMapping from './sizeMapping.js'
+export sizeMappingGenerators from './sizeMappingGenerators.js'
 
 export default {
 	generateVariables,
-	...sizeMapping,
+	...sizeMappingGenerators,
 }
