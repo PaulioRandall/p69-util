@@ -4,7 +4,7 @@
 	"description": "Utility tools designed for P69",
 	"type": "module",
 	"license": "MIT",
-	"version": "1.0.0-rc-2",
+	"version": "1.0.0-rc-3",
 	"engines": {
 		"node": ">=24"
 	},
